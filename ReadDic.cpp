@@ -10,6 +10,7 @@ int readDic() {
 		while (myFile.good()) {
 			myFile >> temp;
 			cout << temp << endl;
+			Trie::addWord(temp);
 		}
 	}
 

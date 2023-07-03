@@ -18,10 +18,7 @@ void main()
     Application::SetCompatibleTextRenderingDefault(false);
 
     DsProject::MainForm form;
-    Trie::addWord("hello");
-    cout << "hello";
-    cout << endl << true << endl;
-    cout << Trie::wordExists("hello");
+
     Application::Run(% form);
 
 

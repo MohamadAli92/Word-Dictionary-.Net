@@ -17,4 +17,6 @@ public :
 	
 	static void addWord(string newWord);
 
+	static bool wordExists(string word);
+
 };

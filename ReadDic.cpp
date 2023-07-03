@@ -9,7 +9,7 @@ int readDic() {
 	if (myFile.is_open()) {
 		while (myFile.good()) {
 			myFile >> temp;
-			cout << temp << endl;
+			//cout << temp << endl;
 			Trie::addWord(temp);
 		}
 	}

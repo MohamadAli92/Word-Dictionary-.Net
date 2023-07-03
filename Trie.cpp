@@ -22,3 +22,14 @@ void Trie::addWord(string newWord) {
 	addingNode->valid = true;
 
 }
+bool Trie::wordExists(string word) {
+	TrieNode* current = Trie::root;
+	for (char c : word) {
+		if (current->children[c - 'a'])
+			current = current->children[c - 'a'];
+		else
+			return false;
+	}
+	if(current->valid)
+		return true;
+};

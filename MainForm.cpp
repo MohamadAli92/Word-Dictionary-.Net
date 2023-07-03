@@ -1,8 +1,7 @@
 #include "MainForm.h"
-#include "ReadDic.h"
+#include "AutoComplete.h"
 
 using namespace System;
-
 using namespace System::Windows::Forms;
 
 [STAThread]
@@ -10,7 +9,6 @@ using namespace System::Windows::Forms;
 //void main(array<String^>^ args)
 void main()
 {
-
     int res = readDic();
 
     Application::EnableVisualStyles();
@@ -20,8 +18,5 @@ void main()
     DsProject::MainForm form;
 
     Application::Run(% form);
-
-
-
 }
 

@@ -13,6 +13,11 @@ void main()
 
     Application::EnableVisualStyles();
 
+    //LCP("ab", Trie::root);    
+    for (string s : AutoCompleteSuggestions("abc", Trie::root))
+        cout << "abc"+s << endl;
+
+        
     Application::SetCompatibleTextRenderingDefault(false);
 
     DsProject::MainForm form;

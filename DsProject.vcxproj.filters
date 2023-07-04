@@ -38,7 +38,7 @@
     <ClInclude Include="ReadDic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\AutoComplete.h">
+    <ClInclude Include="AutoComplete.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,6 +14,8 @@ public:
 class Trie {
 public :
 	TrieNode* root;
+
+	int wordsNum;
 	
 	void addWord(string newWord);
 

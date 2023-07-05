@@ -2,6 +2,7 @@
 
 Trie::Trie() {
 	this->root = new TrieNode;
+	this->wordsNum = 0;
 }
 
 void Trie::addWord(string newWord) {
@@ -23,7 +24,10 @@ void Trie::addWord(string newWord) {
 	
 	addingNode->valid = true;
 
+	this->wordsNum++;
+
 }
+
 bool Trie::wordExists(string word) {
 	TrieNode* current = this->root;
 	for (char c : word) {

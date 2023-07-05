@@ -1,10 +1,12 @@
 #include "Trie.h"
 
-TrieNode* Trie::root = new TrieNode;
+Trie::Trie() {
+	this->root = new TrieNode;
+}
 
 void Trie::addWord(string newWord) {
 
-	TrieNode* addingNode = root;
+	TrieNode* addingNode = this->root;
 
 	for each (char ch in newWord) {
 
@@ -23,7 +25,7 @@ void Trie::addWord(string newWord) {
 
 }
 bool Trie::wordExists(string word) {
-	TrieNode* current = Trie::root;
+	TrieNode* current = this->root;
 	for (char c : word) {
 		if (current->children[c - 'a'])
 			current = current->children[c - 'a'];

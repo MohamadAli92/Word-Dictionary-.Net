@@ -7,4 +7,4 @@
 
 using namespace std;
 
-int readDic();
+int readDic(Trie* trie);

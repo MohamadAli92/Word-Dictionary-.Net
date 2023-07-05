@@ -13,10 +13,13 @@ public:
 
 class Trie {
 public :
-	static TrieNode* root;
+	TrieNode* root;
 	
-	static void addWord(string newWord);
+	void addWord(string newWord);
 
-	static bool wordExists(string word);
+	bool wordExists(string word);
+
+	// Constructor
+	Trie();
 
 };

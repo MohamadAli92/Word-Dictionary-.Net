@@ -1,6 +1,6 @@
 #include "ReadDic.h"
 
-int readDic() {
+int readDic(Trie* trie) {
 
 	ifstream myFile("./words.txt");
 	
@@ -10,7 +10,7 @@ int readDic() {
 		while (myFile.good()) {
 			myFile >> temp;
 			cout << temp << endl;
-			Trie::addWord(temp);
+			trie->addWord(temp);
 		}
 	}
 

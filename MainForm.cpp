@@ -11,7 +11,10 @@ using namespace System::Windows::Forms;
 void main()
 {
 
-    int res = readDic();
+    // Trie of words
+    Trie* MainTrie = new Trie();
+
+    int res = readDic(MainTrie);
 
     Application::EnableVisualStyles();
 

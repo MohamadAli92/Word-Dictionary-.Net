@@ -22,3 +22,20 @@ pair< TrieNode*, string> LCP(string word, TrieNode* root) {
 	}
 	return { root, reusltWord };
 }
+
+
+void reverseTrie(TrieNode* mainTrieNode, Trie* rTrie, string temp="") {
+	
+	if (mainTrieNode == nullptr)
+		return;
+	if (mainTrieNode->valid)
+		rTrie->addWord(temp);
+	for (size_t i = 0; i < 26; i++)
+	{
+		if (mainTrieNode->children[i]) {
+			temp += i + 'a';
+			reverseTrie(mainTrieNode->children[i], rTrie, temp);
+		}
+	}
+
+}

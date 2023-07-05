@@ -124,9 +124,13 @@
   <ItemGroup>
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="ReadDic.cpp" />
+    <ClCompile Include="AutoCorrect.cpp" />
     <ClCompile Include="Trie.cpp" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoCorrect.h" />
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

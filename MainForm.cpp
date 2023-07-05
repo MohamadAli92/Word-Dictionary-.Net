@@ -14,7 +14,20 @@ void main()
     // Trie of words
     Trie* MainTrie = new Trie();
 
-    int res = readDic(MainTrie);
+    Trie* ReverseTrie = new Trie();
+
+    readDic(MainTrie);
+
+    reverseTrie(MainTrie, ReverseTrie);
+
+    vector<string> resWords = autoCorrect(MainTrie, ReverseTrie, "celabrate");
+
+    cout << "Correct Words:" << endl;
+
+    for each (auto word in resWords)
+    {
+        cout << word << endl;
+    }
 
     Application::EnableVisualStyles();
 

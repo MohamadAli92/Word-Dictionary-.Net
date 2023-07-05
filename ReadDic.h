@@ -3,7 +3,7 @@
 #include<fstream>
 #include<string>
 
-#include"Trie.h"
+#include "AutoCorrect.h"
 
 using namespace std;
 

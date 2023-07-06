@@ -12,7 +12,6 @@ int strDiff(string a, string b) {
 	return diff;
 }
 
-// Bug of changing root at here :/
 pair< TrieNode*, string> LCP(string word, TrieNode* root) {
 	string reusltWord = "";
 	TrieNode* checkingNode = root;

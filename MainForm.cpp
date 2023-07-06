@@ -31,7 +31,7 @@ void main()
     Application::EnableVisualStyles();
 
     //LCP("ab", Trie::root);    
-    for (string s : AutoCompleteSuggestions("abc", Trie::root))
+    for (string s : AutoCompleteSuggestions("abc", MainTrie->root))
         cout << "abc"+s << endl;
 
         

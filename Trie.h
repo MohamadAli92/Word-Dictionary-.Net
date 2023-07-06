@@ -10,7 +10,6 @@ public:
 	int validNum{};
 	TrieNode* children[26]{};
 };
-
 class Trie {
 public :
 	TrieNode* root;

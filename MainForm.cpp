@@ -1,19 +1,17 @@
 #include "MainForm.h"
-#include "AutoComplete.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
-
+using namespace DsProject;
 [STAThread]
 
 //void main(array<String^>^ args)
 void main()
 {
 
-    // Trie of words
-    Trie* MainTrie = new Trie();
+    MainTrie = new Trie();
 
-    Trie* ReverseTrie = new Trie();
+    ReverseTrie = new Trie();
 
     readDic(MainTrie);
 

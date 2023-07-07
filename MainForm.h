@@ -1,4 +1,7 @@
 #pragma once
+#include "AutoComplete.h"
+#include <typeinfo>
+#include <msclr\marshal_cppstd.h>
 
 namespace DsProject {
 
@@ -9,6 +12,10 @@ namespace DsProject {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace std;
+
+	// Trie of words
+	Trie* MainTrie;
+	Trie* ReverseTrie;
 
 	/// <summary>
 	/// Summary for MainForm
@@ -95,11 +102,12 @@ namespace DsProject {
 			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
 			this->tableLayoutPanel1->Controls->Add(this->richTextBox1, 1, 0);
 			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 3);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(2, 2);
+			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 1;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(604, 161);
+			this->tableLayoutPanel1->Size = System::Drawing::Size(454, 132);
 			this->tableLayoutPanel1->TabIndex = 0;
 			// 
 			// label1
@@ -108,9 +116,10 @@ namespace DsProject {
 			this->label1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(178)));
-			this->label1->Location = System::Drawing::Point(3, 0);
+			this->label1->Location = System::Drawing::Point(2, 0);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(154, 161);
+			this->label1->Size = System::Drawing::Size(116, 132);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Enter Text:";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -120,9 +129,10 @@ namespace DsProject {
 			this->richTextBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(178)));
-			this->richTextBox1->Location = System::Drawing::Point(163, 3);
+			this->richTextBox1->Location = System::Drawing::Point(122, 2);
+			this->richTextBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(438, 155);
+			this->richTextBox1->Size = System::Drawing::Size(330, 128);
 			this->richTextBox1->TabIndex = 1;
 			this->richTextBox1->Text = L"";
 			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::richTextBox1_TextChanged);
@@ -136,12 +146,13 @@ namespace DsProject {
 			this->tableLayoutPanel2->Controls->Add(this->flowLayoutPanel1, 0, 1);
 			this->tableLayoutPanel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->tableLayoutPanel2->Location = System::Drawing::Point(0, 0);
+			this->tableLayoutPanel2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
 			this->tableLayoutPanel2->RowCount = 2;
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 54.15492F)));
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 45.84507F)));
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
-			this->tableLayoutPanel2->Size = System::Drawing::Size(610, 310);
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 16)));
+			this->tableLayoutPanel2->Size = System::Drawing::Size(458, 252);
 			this->tableLayoutPanel2->TabIndex = 1;
 			this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::tableLayoutPanel2_Paint);
 			// 
@@ -153,28 +164,32 @@ namespace DsProject {
 			this->flowLayoutPanel1->Controls->Add(this->button4);
 			this->flowLayoutPanel1->Controls->Add(this->button3);
 			this->flowLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->flowLayoutPanel1->Location = System::Drawing::Point(3, 170);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(2, 138);
+			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(604, 137);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(454, 112);
 			this->flowLayoutPanel1->TabIndex = 1;
+			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::flowLayoutPanel1_Paint);
 			// 
 			// button1
 			// 
 			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->Location = System::Drawing::Point(3, 3);
+			this->button1->Location = System::Drawing::Point(2, 2);
+			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(154, 59);
+			this->button1->Size = System::Drawing::Size(116, 48);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(163, 3);
+			this->button5->Location = System::Drawing::Point(122, 2);
+			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(154, 59);
+			this->button5->Size = System::Drawing::Size(116, 48);
 			this->button5->TabIndex = 0;
 			this->button5->Text = L"button1";
 			this->button5->UseVisualStyleBackColor = true;
@@ -182,37 +197,41 @@ namespace DsProject {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(323, 3);
+			this->button2->Location = System::Drawing::Point(242, 2);
+			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(154, 59);
+			this->button2->Size = System::Drawing::Size(116, 48);
 			this->button2->TabIndex = 0;
 			this->button2->Text = L"button1";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(3, 68);
+			this->button4->Location = System::Drawing::Point(2, 54);
+			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(154, 59);
+			this->button4->Size = System::Drawing::Size(116, 48);
 			this->button4->TabIndex = 0;
 			this->button4->Text = L"button1";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(163, 68);
+			this->button3->Location = System::Drawing::Point(122, 54);
+			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(154, 59);
+			this->button3->Size = System::Drawing::Size(116, 48);
 			this->button3->TabIndex = 0;
 			this->button3->Text = L"button1";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(610, 310);
+			this->ClientSize = System::Drawing::Size(458, 252);
 			this->Controls->Add(this->tableLayoutPanel2);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
@@ -237,10 +256,37 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	int lastSpace = this->richTextBox1->Text->LastIndexOf(' ');
 	if (lastSpace < 0) lastSpace = 0;
-	button2->Text = lastSpace.ToString();
+	string lastWord = msclr::interop::marshal_as<std::string>(this->richTextBox1->Text->Substring(lastSpace));
+	if(lastWord[0] == ' ') lastWord = lastWord.substr(1, lastWord.length() - 1);
 	if (lastSpace >= 0) {
-		button1->Text = this->richTextBox1->Text->Substring(lastSpace);
+		button1->BackColor = Color::White;
+		button2->BackColor = Color::White;
+		button3->BackColor = Color::White;
+		button4->BackColor = Color::White;
+		button5->BackColor = Color::White;
+		if (!isEmptyString(lastWord)) {
+			cout << lastWord;
+			if (prefixExists(lastWord, MainTrie)) {
+				vector<string> suggestions = AutoCompleteSuggestions(lastWord, MainTrie->root);
+				button1->Text = msclr::interop::marshal_as<System::String^>(suggestions[0]);
+				button2->Text = msclr::interop::marshal_as<System::String^>(suggestions[1]);
+				button3->Text = msclr::interop::marshal_as<System::String^>(suggestions[2]);
+				button4->Text = msclr::interop::marshal_as<System::String^>(suggestions[3]);
+				button5->Text = msclr::interop::marshal_as<System::String^>(suggestions[4]);
+			}
+			else {
+				button1->BackColor = Color::Red;
+				button2->BackColor = Color::Red;
+				button3->BackColor = Color::Red;
+				button4->BackColor = Color::Red;
+				button5->BackColor = Color::Red;
+
+			}
+		}
+
 	}
+}
+private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 };
 }

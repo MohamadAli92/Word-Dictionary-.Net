@@ -2,6 +2,13 @@
 #include <iostream>
 
 using namespace std;
+bool isEmptyString(string s) {
+	for (char c : s) {
+		if (isalpha(c))
+			return false;
+	}
+	return true;
+}
 
 int strDiff(string a, string b) {
 	int diff = 0;

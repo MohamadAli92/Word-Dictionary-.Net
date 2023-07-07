@@ -18,9 +18,9 @@ public :
 	
 	void addWord(string newWord);
 
-	bool wordExists(string word);
-
 	// Constructor
 	Trie();
 
 };
+bool wordExists(string word, Trie* tire);
+bool prefixExists(string word, Trie* trie);

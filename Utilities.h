@@ -2,7 +2,7 @@
 #include<vector>
 
 void reverseTrie(Trie* mainTrie, Trie* rTrie);
-
+bool isEmptyString(string s);
 int strDiff(string, string);
 
 pair< TrieNode*, string> LCP(string word, TrieNode* root);

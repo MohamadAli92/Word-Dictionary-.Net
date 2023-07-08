@@ -5,7 +5,6 @@ using namespace System::Windows::Forms;
 using namespace DsProject;
 [STAThread]
 
-//void main(array<String^>^ args)
 void main()
 {
 

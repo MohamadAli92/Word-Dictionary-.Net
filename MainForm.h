@@ -64,7 +64,7 @@ namespace DsProject {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Panel^ panel1;
+
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
 	private: System::Windows::Forms::ToolStripTextBox^ toolStripTextBox1;
 	private: System::Windows::Forms::ToolStripSeparator^ toolStripSeparator1;
@@ -118,7 +118,6 @@ namespace DsProject {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->toolStripTextBox1 = (gcnew System::Windows::Forms::ToolStripTextBox());
 			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
@@ -208,7 +207,6 @@ namespace DsProject {
 			this->flowLayoutPanel1->Controls->Add(this->button2);
 			this->flowLayoutPanel1->Controls->Add(this->button4);
 			this->flowLayoutPanel1->Controls->Add(this->button3);
-			this->flowLayoutPanel1->Controls->Add(this->panel1);
 			this->flowLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->flowLayoutPanel1->Location = System::Drawing::Point(3, 169);
 			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -252,7 +250,6 @@ namespace DsProject {
 			this->button2->Text = L" ";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
-
 			// 
 			// button4
 			// 
@@ -264,7 +261,6 @@ namespace DsProject {
 			this->button4->Text = L" ";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &MainForm::button4_Click);
-
 			// 
 			// button3
 			// 
@@ -276,19 +272,6 @@ namespace DsProject {
 			this->button3->Text = L" ";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &MainForm::button3_Click);
-
-			// 
-			// panel1
-			// 
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->panel1->ForeColor = System::Drawing::SystemColors::InfoText;
-			this->panel1->Location = System::Drawing::Point(325, 66);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(200, 100);
-			this->panel1->TabIndex = 1;
-			this->panel1->Visible = false;
-
 			// 
 			// contextMenuStrip1
 			// 
@@ -376,6 +359,7 @@ namespace DsProject {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainForm::OnFormClosing);
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->tableLayoutPanel1->ResumeLayout(false);
 			this->tableLayoutPanel1->PerformLayout();
@@ -386,7 +370,6 @@ namespace DsProject {
 			this->contextMenuStrip2->ResumeLayout(false);
 			this->contextMenuStrip2->PerformLayout();
 			this->ResumeLayout(false);
-			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &DsProject::MainForm::OnFormClosing);
 
 		}
 #pragma endregion
@@ -399,9 +382,6 @@ namespace DsProject {
 
 	}
 	private:
-		//void OnMouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
-		//void OnCursorChanged(System::Object^ sender, System::EventArgs^ e);
-		//void OnMouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 	private: System::Void tableLayoutPanel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -482,13 +462,11 @@ namespace DsProject {
 					button3->BackColor = Color::Red;
 					button4->BackColor = Color::Red;
 					button5->BackColor = Color::Red;
-					//this->richTextBox1->Text->Substring(this->richTextBox1->Text->LastIndexOf(" "), this->richTextBox1->Text->Length - 1);
 				}
 			}
 
 		}
 
-		//cout << richTextBox1->Text->LastIndexOf(" ") << endl;
 
 	if (richTextBox1->TextLength == 0) {
 		richTextBox1->SelectAll();
@@ -675,17 +653,11 @@ private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::E
 };
 
 void DsProject::MainForm::OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-	//this->panel1->Location.X = e->Location.X;
-	//this->panel1->Location.Y = e->Location.Y;	
-	//this->panel1->Visible = true;
-	//this->panel1->Show();
 
 	String^ cT = this->richTextBox1->SelectedText->ToString();
 	string checkingString = msclr::interop::marshal_as<std::string>(cT);
 
 	vector<string> correctWords;
-
-	//cout << checkingString.substr(0, checkingString.length() - 1) << endl;
 
 	if (checkingString == "") {
 

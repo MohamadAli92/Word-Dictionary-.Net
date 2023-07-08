@@ -9,7 +9,6 @@ int readDic(Trie* trie) {
 	if (myFile.is_open()) {
 		while (myFile.good()) {
 			myFile >> temp;
-			//cout << temp << endl;
 			trie->addWord(temp);
 		}
 	}

@@ -2,12 +2,6 @@
 
 vector<string> autoCorrect(Trie* mainTrie, Trie* rTrie, const string inputStr) {
 
-	//Trie* rTrie = new Trie();
-
-	//reverseTrie(mainTrie->root, rTrie);
-
-	//pair<TrieNode*, string> mainRes = LCP(inputStr, mainTrie->root);
-
 	vector<string> normalWords;
 
 	vector<string> reversedWords;

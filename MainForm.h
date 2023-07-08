@@ -227,7 +227,7 @@ namespace DsProject {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(155, 59);
 			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
+			this->button1->Text = L" ";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
 			// 
@@ -238,7 +238,7 @@ namespace DsProject {
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(155, 59);
 			this->button5->TabIndex = 0;
-			this->button5->Text = L"button1";
+			this->button5->Text = L" ";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &MainForm::button5_Click);
 			// 
@@ -249,8 +249,10 @@ namespace DsProject {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(155, 59);
 			this->button2->TabIndex = 0;
-			this->button2->Text = L"button1";
+			this->button2->Text = L" ";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
+
 			// 
 			// button4
 			// 
@@ -259,8 +261,10 @@ namespace DsProject {
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(155, 59);
 			this->button4->TabIndex = 0;
-			this->button4->Text = L"button1";
+			this->button4->Text = L" ";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MainForm::button4_Click);
+
 			// 
 			// button3
 			// 
@@ -269,8 +273,10 @@ namespace DsProject {
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(155, 59);
 			this->button3->TabIndex = 0;
-			this->button3->Text = L"button1";
+			this->button3->Text = L" ";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MainForm::button3_Click);
+
 			// 
 			// panel1
 			// 
@@ -282,6 +288,7 @@ namespace DsProject {
 			this->panel1->Size = System::Drawing::Size(200, 100);
 			this->panel1->TabIndex = 1;
 			this->panel1->Visible = false;
+
 			// 
 			// contextMenuStrip1
 			// 
@@ -383,6 +390,12 @@ namespace DsProject {
 		}
 #pragma endregion
 	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		button1->Text = " ";
+		button2->Text = " ";
+		button3->Text = " ";
+		button4->Text = " ";
+		button5->Text = " ";
+
 	}
 	private:
 		//void OnMouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
@@ -390,243 +403,276 @@ namespace DsProject {
 		//void OnMouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 	private: System::Void tableLayoutPanel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
-private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	int lastSpace = this->richTextBox1->Text->LastIndexOf(' ');
-	if (lastSpace < 0) lastSpace = 0;
-	string lastWord = msclr::interop::marshal_as<std::string>(this->richTextBox1->Text->Substring(lastSpace));
-	if(lastWord[0] == ' ') lastWord = lastWord.substr(1, lastWord.length() - 1);
-	if (lastSpace >= 0) {
-		button1->BackColor = Color::White;
-		button2->BackColor = Color::White;
-		button3->BackColor = Color::White;
-		button4->BackColor = Color::White;
-		button5->BackColor = Color::White;
-		if (!isEmptyString(lastWord)) {
-			cout << lastWord;
-			if (prefixExists(lastWord, MainTrie)) {
-				vector<string> suggestions = AutoCompleteSuggestions(lastWord, MainTrie->root);
-				button1->Text = msclr::interop::marshal_as<System::String^>(suggestions[0]);
-				button2->Text = msclr::interop::marshal_as<System::String^>(suggestions[1]);
-				button3->Text = msclr::interop::marshal_as<System::String^>(suggestions[2]);
-				button4->Text = msclr::interop::marshal_as<System::String^>(suggestions[3]);
-				button5->Text = msclr::interop::marshal_as<System::String^>(suggestions[4]);
-			}
-			else {
-				button1->BackColor = Color::Red;
-				button2->BackColor = Color::Red;
-				button3->BackColor = Color::Red;
-				button4->BackColor = Color::Red;
-				button5->BackColor = Color::Red;
-				//this->richTextBox1->Text->Substring(this->richTextBox1->Text->LastIndexOf(" "), this->richTextBox1->Text->Length - 1);
-			}
-		}
-
+	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (this->richTextBox1->Text->LastIndexOf(' ') + 1 >= 0)
+			this->richTextBox1->Text = this->richTextBox1->Text->Substring(0, this->richTextBox1->Text->LastIndexOf(' ') + 1) +
+			this->button5->Text;
+		else
+			this->richTextBox1->Text = this->button5->Text;
 	}
 
-	//cout << richTextBox1->Text->LastIndexOf(" ") << endl;
-
-	if (richTextBox1->Text->LastIndexOf(" ") == richTextBox1->TextLength-1) {
-		int startingInd = this->richTextBox1->Text->Substring(0, richTextBox1->TextLength - 1)->LastIndexOf(" ") + 1;
-		int endingInd = this->richTextBox1->Text->Substring(0, richTextBox1->TextLength - 1)->Length;
-		String^ cString = this->richTextBox1->Text->Substring(startingInd, endingInd-startingInd)->ToString();
-		string cnString = msclr::interop::marshal_as<std::string>(cString);
-		if (!wordExists(cnString, MainTrie)) {
-
-			this->richTextBox1->SelectionStart = startingInd;
-			richTextBox1->SelectionLength = endingInd - startingInd;
-
-			richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Strikeout, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(178)));
-			this->richTextBox1->SelectionColor = System::Drawing::Color::Red;
-
-			richTextBox1->DeselectAll();
-
-			richTextBox1->Select(richTextBox1->TextLength, 0);
-
-		}
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (this->richTextBox1->Text->LastIndexOf(' ') + 1 >= 0)
+			this->richTextBox1->Text = this->richTextBox1->Text->Substring(0, this->richTextBox1->Text->LastIndexOf(' ') + 1) +
+			this->button4->Text;
+		else
+			this->richTextBox1->Text = this->button4->Text;
 	}
-
-}
-private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-	   void OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
-private: System::Void toolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	//string fixingStr = msclr::interop::marshal_as<std::string>(this->richTextBox1->SelectedText);
-
-	//char* char_array = new char[fixingStr.length() + 1];
-	//char_array[fixingStr.length()] = '\0';
-	//for (int j = 0; j < fixingStr.length(); j++) {
-	//	char_array[j] = fixingStr[j];
-	//}
-	//this->contextMenuStrip1->Items[i + 2]->Text = gcnew String(char_array);
-	//Console::WriteLine(toolStripMenuItem1->Text);
-
-	//this->richTextBox1->Text = this->richTextBox1->Text->Replace("b", "Moz");
-	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem1->Text);
-
-	//this->richTextBox1->GetCharIndexFromPosition(this->richTextBox1->SelectedText->Replace())
-
-	//cout << msclr::interop::marshal_as<std::string>(this->richTextBox1->SelectedText) << endl;
-}
-private: System::Void toolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	//this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-	//	static_cast<System::Byte>(178)));
-	//this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
-
-	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem2->Text);
-
-	richTextBox1->DeselectAll();
-
-	richTextBox1->Select(richTextBox1->TextLength, 0);
-
-	cout << richTextBox1->SelectionStart << endl;
-
-}
-private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem3->Text);
-	//this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-	//	static_cast<System::Byte>(178)));
-	//this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
-
-}
-private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem4->Text);
-	this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-		static_cast<System::Byte>(178)));
-	this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
-
-}
-private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem5->Text);
-	this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-		static_cast<System::Byte>(178)));
-	this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
-
-}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-
-	//richTextBox1->SelectionColor = Color::Red;
-	//richTextBox1->SelectionBackColor = Color::IndianRed;
-	//richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-	//	static_cast<System::Byte>(178)));
-
-
-	//richTextBox1->
-	//	this->richTextBox1->
-
-}
-};
-}
-
-
-//void DsProject::MainForm::OnMouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-//{
-//	//throw gcnew System::NotImplementedException();
-//	int x = e->X;
-//	int y = e->Y;
-//
-//	this->textBox1->Text = x.ToString();
-//	this->textBox1->Text = y.ToString();
-//
-//}
-//
-//
-//void DsProject::MainForm::OnCursorChanged(System::Object^ sender, System::EventArgs^ e)
-//{
-//	throw gcnew System::NotImplementedException();
-//
-//	this->label1->Text = this->textBox1->Cursor->Position.X.ToString();
-//}
-//
-//
-//void DsProject::MainForm::OnMouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-//{
-//	//throw gcnew System::NotImplementedException();
-//
-//	this->label1->Text = this->textBox1->
-//
-//	//this->label1->Text = this->textBox1->Text;
-//}
-
-
-void DsProject::MainForm::OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
-{
-	//this->panel1->Location.X = e->Location.X;
-	//this->panel1->Location.Y = e->Location.Y;	
-	//this->panel1->Visible = true;
-	//this->panel1->Show();
-
-	String^ cT = this->richTextBox1->SelectedText->ToString();
-	string checkingString = msclr::interop::marshal_as<std::string>(cT);
-
-	vector<string> correctWords;
-
-	//cout << checkingString.substr(0, checkingString.length() - 1) << endl;
-
-	if (checkingString == "") {
-
-		this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
-
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (this->richTextBox1->Text->LastIndexOf(' ') + 1 >= 0)
+			this->richTextBox1->Text = this->richTextBox1->Text->Substring(0, this->richTextBox1->Text->LastIndexOf(' ') + 1) +
+			this->button3->Text;
+		else
+			this->richTextBox1->Text = this->button3->Text;
 	}
-	else {
-
-		if (checkingString[checkingString.length() - 1] == ' ')
-			checkingString = checkingString.substr(0, checkingString.length() - 1);
-
-		correctWords = autoCorrect(MainTrie, ReverseTrie, checkingString);
-
-		if (wordExists(checkingString, MainTrie)) 
-
-			this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
-		
-		else {
-			for (int i = 0; i < 5; i++) {
-				char* char_array = new char[correctWords[i].length() + 1];
-				char_array[correctWords[i].length()] = '\0';
-				for (int j = 0; j < correctWords[i].length(); j++) {
-					char_array[j] = correctWords[i][j];
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (this->richTextBox1->Text->LastIndexOf(' ') + 1 >= 0)
+			this->richTextBox1->Text = this->richTextBox1->Text->Substring(0, this->richTextBox1->Text->LastIndexOf(' ') + 1) +
+			this->button2->Text;
+		else
+			this->richTextBox1->Text = this->button2->Text;
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (this->richTextBox1->Text->LastIndexOf(' ') + 1 >= 0)
+			this->richTextBox1->Text = this->richTextBox1->Text->Substring(0, this->richTextBox1->Text->LastIndexOf(' ') + 1) +
+			this->button1->Text;
+		else
+			this->richTextBox1->Text = this->button1->Text;
+	}
+	private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		int lastSpace = this->richTextBox1->Text->LastIndexOf(' ');
+		if (lastSpace < 0) lastSpace = 0;
+		string lastWord = msclr::interop::marshal_as<std::string>(this->richTextBox1->Text->Substring(lastSpace));
+		if (lastWord[0] == ' ') lastWord = lastWord.substr(1, lastWord.length() - 1);
+		if (lastSpace >= 0) {
+			button1->BackColor = Color::White;
+			button2->BackColor = Color::White;
+			button3->BackColor = Color::White;
+			button4->BackColor = Color::White;
+			button5->BackColor = Color::White;
+			if (!isEmptyString(lastWord)) {
+				cout << lastWord;
+				if (prefixExists(lastWord, MainTrie)) {
+					vector<string> suggestions = AutoCompleteSuggestions(lastWord, MainTrie->root);
+					button1->Text = msclr::interop::marshal_as<System::String^>(suggestions[0]);
+					button2->Text = msclr::interop::marshal_as<System::String^>(suggestions[1]);
+					button3->Text = msclr::interop::marshal_as<System::String^>(suggestions[2]);
+					button4->Text = msclr::interop::marshal_as<System::String^>(suggestions[3]);
+					button5->Text = msclr::interop::marshal_as<System::String^>(suggestions[4]);
 				}
-				this->contextMenuStrip1->Items[i + 2]->Text = gcnew String(char_array);
-				delete[] char_array;
-
+				else {
+					button1->BackColor = Color::Red;
+					button2->BackColor = Color::Red;
+					button3->BackColor = Color::Red;
+					button4->BackColor = Color::Red;
+					button5->BackColor = Color::Red;
+					//this->richTextBox1->Text->Substring(this->richTextBox1->Text->LastIndexOf(" "), this->richTextBox1->Text->Length - 1);
+				}
 			}
 
-			this->contextMenuStrip1->Show(Cursor->Position.X, Cursor->Position.Y);
 		}
+
+		//cout << richTextBox1->Text->LastIndexOf(" ") << endl;
+
+		if (richTextBox1->Text->LastIndexOf(" ") == richTextBox1->TextLength - 1) {
+			int startingInd = this->richTextBox1->Text->Substring(0, richTextBox1->TextLength - 1)->LastIndexOf(" ") + 1;
+			int endingInd = this->richTextBox1->Text->Substring(0, richTextBox1->TextLength - 1)->Length;
+			String^ cString = this->richTextBox1->Text->Substring(startingInd, endingInd - startingInd)->ToString();
+			string cnString = msclr::interop::marshal_as<std::string>(cString);
+			if (!wordExists(cnString, MainTrie)) {
+				this->richTextBox1->SelectionStart = startingInd;
+				richTextBox1->SelectionLength = endingInd - startingInd;
+				richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Strikeout, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(178)));
+				this->richTextBox1->SelectionColor = System::Drawing::Color::Red;
+
+				richTextBox1->DeselectAll();
+
+				richTextBox1->Select(richTextBox1->TextLength, 0);
+
+			}
+		}
+
 	}
-	
-	//if (correctWords.empty() || wordExists(checkingString, MainTrie))
-	//	this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
-	//else {
+	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+		   //void OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+	private: System::Void toolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	//	for (int i = 0; i < 5; i++) {
-	//		char* char_array = new char[correctWords[i].length() + 1];
-	//		char_array[correctWords[i].length()] = '\0';
-	//		for (int j = 0; j < correctWords[i].length(); j++) {
-	//			char_array[j] = correctWords[i][j];
-	//		}
-	//		this->contextMenuStrip1->Items[i+2]->Text = gcnew String(char_array);
-	//		delete[] char_array;
-	//	}
-	//	//char char_array[] = new char[correctWords[0].length() + 1];
-	//	//char_array[correctWords[0].length()] = '\0';
-	//	//for (int i = 0; i < correctWords[0].length(); i++) {
-	//	//	char_array[i] = correctWords[0][i];
-	//	//}
-	//	//contextMenuStrip1->Items[2]->Text = gcnew String(char_array);
+		//string fixingStr = msclr::interop::marshal_as<std::string>(this->richTextBox1->SelectedText);
+
+		//char* char_array = new char[fixingStr.length() + 1];
+		//char_array[fixingStr.length()] = '\0';
+		//for (int j = 0; j < fixingStr.length(); j++) {
+		//	char_array[j] = fixingStr[j];
+		//}
+		//this->contextMenuStrip1->Items[i + 2]->Text = gcnew String(char_array);
+		//Console::WriteLine(toolStripMenuItem1->Text);
+
+		//this->richTextBox1->Text = this->richTextBox1->Text->Replace("b", "Moz");
+		this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem1->Text);
+
+		//this->richTextBox1->GetCharIndexFromPosition(this->richTextBox1->SelectedText->Replace())
+
+		//cout << msclr::interop::marshal_as<std::string>(this->richTextBox1->SelectedText) << endl;
+	}
+	private: System::Void toolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		//this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		//	static_cast<System::Byte>(178)));
+		//this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+		this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem2->Text);
+
+		richTextBox1->DeselectAll();
+
+		richTextBox1->Select(richTextBox1->TextLength, 0);
+
+		cout << richTextBox1->SelectionStart << endl;
+
+	}
+	private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem3->Text);
+		//this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		//	static_cast<System::Byte>(178)));
+		//this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+	}
+	private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem4->Text);
+		this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(178)));
+		this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+	}
+	private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem5->Text);
+		this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(178)));
+		this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+	}
+		   //private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
-	//}
+			   //richTextBox1->SelectionColor = Color::Red;
+			   //richTextBox1->SelectionBackColor = Color::IndianRed;
+			   //richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			   //	static_cast<System::Byte>(178)));
 
-	//this->contextMenuStrip1->Location.X = e->Location.X;
-	//this->contextMenuStrip1->Location.Y = e->Location.Y;
-	//this->contextMenuStrip1->Visible = true;
-}
+
+			   //richTextBox1->
+			   //	this->richTextBox1->
+
+		   //}
+
+
+
+		   //void DsProject::MainForm::OnMouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+		   //{
+		   //	//throw gcnew System::NotImplementedException();
+		   //	int x = e->X;
+		   //	int y = e->Y;
+		   //
+		   //	this->textBox1->Text = x.ToString();
+		   //	this->textBox1->Text = y.ToString();
+		   //
+		   //}
+		   //
+		   //
+		   //void DsProject::MainForm::OnCursorChanged(System::Object^ sender, System::EventArgs^ e)
+		   //{
+		   //	throw gcnew System::NotImplementedException();
+		   //
+		   //	this->label1->Text = this->textBox1->Cursor->Position.X.ToString();
+		   //}
+		   //
+		   //
+		   //void DsProject::MainForm::OnMouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+		   //{
+		   //	//throw gcnew System::NotImplementedException();
+		   //
+		   //	this->label1->Text = this->textBox1->
+		   //
+		   //	//this->label1->Text = this->textBox1->Text;
+		   //}
+
+
+		   void DsProject::MainForm::OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+		   {
+			   //this->panel1->Location.X = e->Location.X;
+			   //this->panel1->Location.Y = e->Location.Y;	
+			   //this->panel1->Visible = true;
+			   //this->panel1->Show();
+
+			   String^ cT = this->richTextBox1->SelectedText->ToString();
+			   string checkingString = msclr::interop::marshal_as<std::string>(cT);
+
+			   vector<string> correctWords;
+
+			   //cout << checkingString.substr(0, checkingString.length() - 1) << endl;
+
+			   if (checkingString == "") {
+
+				   this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
+
+			   }
+			   else {
+
+				   if (checkingString[checkingString.length() - 1] == ' ')
+					   checkingString = checkingString.substr(0, checkingString.length() - 1);
+
+				   correctWords = autoCorrect(MainTrie, ReverseTrie, checkingString);
+
+				   if (wordExists(checkingString, MainTrie))
+
+					   this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
+
+				   else {
+					   for (int i = 0; i < 5; i++) {
+						   char* char_array = new char[correctWords[i].length() + 1];
+						   char_array[correctWords[i].length()] = '\0';
+						   for (int j = 0; j < correctWords[i].length(); j++) {
+							   char_array[j] = correctWords[i][j];
+						   }
+						   this->contextMenuStrip1->Items[i + 2]->Text = gcnew String(char_array);
+						   delete[] char_array;
+
+					   }
+
+					   this->contextMenuStrip1->Show(Cursor->Position.X, Cursor->Position.Y);
+				   }
+			   }
+
+			   //if (correctWords.empty() || wordExists(checkingString, MainTrie))
+			   //	this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
+			   //else {
+
+			   //	for (int i = 0; i < 5; i++) {
+			   //		char* char_array = new char[correctWords[i].length() + 1];
+			   //		char_array[correctWords[i].length()] = '\0';
+			   //		for (int j = 0; j < correctWords[i].length(); j++) {
+			   //			char_array[j] = correctWords[i][j];
+			   //		}
+			   //		this->contextMenuStrip1->Items[i+2]->Text = gcnew String(char_array);
+			   //		delete[] char_array;
+			   //	}
+			   //	//char char_array[] = new char[correctWords[0].length() + 1];
+			   //	//char_array[correctWords[0].length()] = '\0';
+			   //	//for (int i = 0; i < correctWords[0].length(); i++) {
+			   //	//	char_array[i] = correctWords[0][i];
+			   //	//}
+			   //	//contextMenuStrip1->Items[2]->Text = gcnew String(char_array);
+
+
+			   //}
+
+			   //this->contextMenuStrip1->Location.X = e->Location.X;
+			   //this->contextMenuStrip1->Location.Y = e->Location.Y;
+			   //this->contextMenuStrip1->Visible = true;
+		   }
+	};
+};

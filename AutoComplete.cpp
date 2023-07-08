@@ -1,20 +1,20 @@
 #include <algorithm>
 #include "AutoComplete.h"
-#include <map>
-map<string, int> frequencies =
-{
-	{"abandon", 1},
-	{"ability",1},
-	{"able",1},
-	{"abortion",1000},
-	{"about",1},
-
-	{"absorb", 10},
-	{"abuse",110},
-	{"absolutely",12},
-	{"absolute",13},
-	{"absence",14}
-};
+//#include <map>
+//map<string, int> frequencies =
+//{
+//	{"abandon", 1},
+//	{"ability",1},
+//	{"able",1},
+//	{"abortion",1000},
+//	{"about",1},
+//
+//	{"absorb", 10},
+//	{"abuse",110},
+//	{"absolutely",12},
+//	{"absolute",13},
+//	{"absence",14}
+//};
 void autoCompleteWords(string str, TrieNode* node, vector<string>& auotCompleteWords) {
 	if (node->valid)
 		auotCompleteWords.push_back(str);

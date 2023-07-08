@@ -11,6 +11,8 @@ using namespace std;
 
 int readDic(Trie* trie);
 
+int writeDic();
+
 #endif // !READDIC_H
 
 

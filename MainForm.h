@@ -456,6 +456,9 @@ namespace DsProject {
 					button4->Text = msclr::interop::marshal_as<System::String^>(suggestions[3]);
 					button5->Text = msclr::interop::marshal_as<System::String^>(suggestions[4]);
 				}
+				if (wordExists(lastWord, MainTrie)) {
+					addFreq(lastWord);
+				}
 				else {
 					button1->BackColor = Color::Red;
 					button2->BackColor = Color::Red;

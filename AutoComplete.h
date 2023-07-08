@@ -1,6 +1,5 @@
 #ifndef AUTOCOMPLETE_H
 #define AUTOCOMPLETE_H
-
 #include "ReadDic.h"
 #include "vector"
 #include "AutoCorrect.h"
@@ -11,7 +10,6 @@ vector<string> AutoCompleteSuggestions(string inputString, TrieNode* root); //Ta
 pair< TrieNode*, string> LCP(string word, TrieNode* root);
 void autoCompleteWords(string str, TrieNode* node, vector<string>& auotCompleteWords);
 int findMinFreq(vector<pair<int, int>> v);
-map<string, int>* frequencies;
-
+void addFreq(string);
 #endif // !AUTOCOMPLETE_H
 

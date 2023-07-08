@@ -23,7 +23,7 @@ int writeDic(Trie* trie) {
 
 	ofstream myFile("./trie.bin");
 
-	frequencies = new map<string, int>();
+	//frequencies = new map<string, int>();
 
 	return 1;
 }

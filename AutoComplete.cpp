@@ -1,7 +1,8 @@
 #include <algorithm>
 #include "AutoComplete.h"
-//#include <map>
-//map<string, int> frequencies =
+#include <map>
+map<string, int> frequencies;
+
 //{
 //	{"abandon", 1},
 //	{"ability",1},
@@ -15,6 +16,9 @@
 //	{"absolute",13},
 //	{"absence",14}
 //};
+void addFreq(string str){
+	frequencies[str] += 1;
+}
 void autoCompleteWords(string str, TrieNode* node, vector<string>& auotCompleteWords) {
 	if (node->valid)
 		auotCompleteWords.push_back(str);

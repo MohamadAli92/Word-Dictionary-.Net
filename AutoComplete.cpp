@@ -19,6 +19,17 @@ map<string, int> frequencies;
 void addFreq(string str){
 	frequencies[str] += 1;
 }
+
+map<string, int>* getMap() {
+	return &frequencies;
+}
+
+void putOnMap(map<string, int>* input) {
+	for (auto pair : *input) {
+		frequencies.insert(pair);
+	}
+}
+
 void autoCompleteWords(string str, TrieNode* node, vector<string>& auotCompleteWords) {
 	if (node->valid)
 		auotCompleteWords.push_back(str);

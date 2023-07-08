@@ -698,5 +698,5 @@ void DsProject::MainForm::OnMouseDoubleClick(System::Object^ sender, System::Win
 
 void DsProject::MainForm::OnFormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
 {
-	
+	writeDic(MainTrie);
 }

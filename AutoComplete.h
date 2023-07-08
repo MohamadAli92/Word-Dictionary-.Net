@@ -11,5 +11,7 @@ pair< TrieNode*, string> LCP(string word, TrieNode* root);
 void autoCompleteWords(string str, TrieNode* node, vector<string>& auotCompleteWords);
 int findMinFreq(vector<pair<int, int>> v);
 void addFreq(string);
+map<string, int>* getMap();
+void putOnMap(map<string, int>* input);
 #endif // !AUTOCOMPLETE_H
 

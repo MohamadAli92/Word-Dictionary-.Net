@@ -8,14 +8,18 @@ Trie::Trie() {
 void Trie::addWord(string newWord) {
 	TrieNode* addingNode = this->root;
 	for each (char ch in newWord) {
-		ch = (ch >= 'A' && ch <= 'Z') ? ch + 32 : ch;
-		if ((ch - 'a' < 0 && ch - 'a' >= 26) || addingNode == NULL)
-			return;
-		if (addingNode->children[ch - 'a'] == NULL){
-			addingNode->validNum++;
-			addingNode->children[ch - 'a'] = new TrieNode;
+		if (isalpha(ch)) {
+			ch = (ch >= 'A' && ch <= 'Z') ? ch + 32 : ch;
+			if (addingNode == NULL)
+				return;
+			if (addingNode->children[ch - 'a'] == NULL) {
+				addingNode->validNum++;
+				addingNode->children[ch - 'a'] = new TrieNode;
+			}
+			addingNode = addingNode->children[ch - 'a'];
+
 		}
-		addingNode = addingNode->children[ch - 'a'];
+		else continue;
 	}
 	
 	addingNode->valid = true;

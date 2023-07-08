@@ -1,3 +1,6 @@
+#ifndef TRIE_H
+#define TRIE_H
+
 #include<string>
 
 using namespace std;
@@ -11,11 +14,11 @@ public:
 	TrieNode* children[26]{};
 };
 class Trie {
-public :
+public:
 	TrieNode* root;
 
 	int wordsNum;
-	
+
 	void addWord(string newWord);
 
 	// Constructor
@@ -24,3 +27,7 @@ public :
 };
 bool wordExists(string word, Trie* tire);
 bool prefixExists(string word, Trie* trie);
+
+#endif // !TRIE_H
+
+

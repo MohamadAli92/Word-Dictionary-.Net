@@ -1,7 +1,19 @@
 #pragma once
+
+#ifndef MAINFORM_H
+#define MAINFORM_H
+
 #include "AutoComplete.h"
+#include "AutoCorrect.h"
+
 #include <typeinfo>
 #include <msclr\marshal_cppstd.h>
+#include <cstring>
+#include <string>
+#include <iostream>
+
+#endif // !MAINFORM_H
+
 
 namespace DsProject {
 
@@ -52,6 +64,24 @@ namespace DsProject {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
+	private: System::Windows::Forms::ToolStripTextBox^ toolStripTextBox1;
+	private: System::Windows::Forms::ToolStripSeparator^ toolStripSeparator1;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem3;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem4;
+	private: System::Windows::Forms::ToolStripMenuItem^ toolStripMenuItem5;
+	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip2;
+	private: System::Windows::Forms::ToolStripTextBox^ toolStripTextBox2;
+
+
+
+
+
+
+	private: System::ComponentModel::IContainer^ components;
 
 	protected:
 
@@ -68,7 +98,7 @@ namespace DsProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -77,6 +107,7 @@ namespace DsProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
@@ -87,9 +118,22 @@ namespace DsProject {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+			this->toolStripTextBox1 = (gcnew System::Windows::Forms::ToolStripTextBox());
+			this->toolStripSeparator1 = (gcnew System::Windows::Forms::ToolStripSeparator());
+			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem3 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem4 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStripMenuItem5 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+			this->toolStripTextBox2 = (gcnew System::Windows::Forms::ToolStripTextBox());
 			this->tableLayoutPanel1->SuspendLayout();
 			this->tableLayoutPanel2->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
+			this->contextMenuStrip1->SuspendLayout();
+			this->contextMenuStrip2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -102,12 +146,13 @@ namespace DsProject {
 			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
 			this->tableLayoutPanel1->Controls->Add(this->richTextBox1, 1, 0);
 			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tableLayoutPanel1->Location = System::Drawing::Point(2, 2);
-			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 2);
+			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
 			this->tableLayoutPanel1->RowCount = 1;
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(454, 132);
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 163)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(605, 163);
 			this->tableLayoutPanel1->TabIndex = 0;
 			// 
 			// label1
@@ -116,10 +161,9 @@ namespace DsProject {
 			this->label1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(178)));
-			this->label1->Location = System::Drawing::Point(2, 0);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(3, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(116, 132);
+			this->label1->Size = System::Drawing::Size(155, 163);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Enter Text:";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -129,13 +173,14 @@ namespace DsProject {
 			this->richTextBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(178)));
-			this->richTextBox1->Location = System::Drawing::Point(122, 2);
-			this->richTextBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->richTextBox1->Location = System::Drawing::Point(164, 2);
+			this->richTextBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(330, 128);
+			this->richTextBox1->Size = System::Drawing::Size(438, 159);
 			this->richTextBox1->TabIndex = 1;
 			this->richTextBox1->Text = L"";
 			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::richTextBox1_TextChanged);
+			this->richTextBox1->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::OnMouseDoubleClick);
 			// 
 			// tableLayoutPanel2
 			// 
@@ -146,13 +191,13 @@ namespace DsProject {
 			this->tableLayoutPanel2->Controls->Add(this->flowLayoutPanel1, 0, 1);
 			this->tableLayoutPanel2->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->tableLayoutPanel2->Location = System::Drawing::Point(0, 0);
-			this->tableLayoutPanel2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tableLayoutPanel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
 			this->tableLayoutPanel2->RowCount = 2;
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 54.15492F)));
 			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 45.84507F)));
-			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 16)));
-			this->tableLayoutPanel2->Size = System::Drawing::Size(458, 252);
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel2->Size = System::Drawing::Size(611, 310);
 			this->tableLayoutPanel2->TabIndex = 1;
 			this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::tableLayoutPanel2_Paint);
 			// 
@@ -163,11 +208,12 @@ namespace DsProject {
 			this->flowLayoutPanel1->Controls->Add(this->button2);
 			this->flowLayoutPanel1->Controls->Add(this->button4);
 			this->flowLayoutPanel1->Controls->Add(this->button3);
+			this->flowLayoutPanel1->Controls->Add(this->panel1);
 			this->flowLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->flowLayoutPanel1->Location = System::Drawing::Point(2, 138);
-			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(3, 169);
+			this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-			this->flowLayoutPanel1->Size = System::Drawing::Size(454, 112);
+			this->flowLayoutPanel1->Size = System::Drawing::Size(605, 139);
 			this->flowLayoutPanel1->TabIndex = 1;
 			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::flowLayoutPanel1_Paint);
 			// 
@@ -176,20 +222,21 @@ namespace DsProject {
 			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->Location = System::Drawing::Point(2, 2);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Location = System::Drawing::Point(3, 2);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(116, 48);
+			this->button1->Size = System::Drawing::Size(155, 59);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(122, 2);
-			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button5->Location = System::Drawing::Point(164, 2);
+			this->button5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(116, 48);
+			this->button5->Size = System::Drawing::Size(155, 59);
 			this->button5->TabIndex = 0;
 			this->button5->Text = L"button1";
 			this->button5->UseVisualStyleBackColor = true;
@@ -197,41 +244,129 @@ namespace DsProject {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(242, 2);
-			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button2->Location = System::Drawing::Point(325, 2);
+			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(116, 48);
+			this->button2->Size = System::Drawing::Size(155, 59);
 			this->button2->TabIndex = 0;
 			this->button2->Text = L"button1";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(2, 54);
-			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button4->Location = System::Drawing::Point(3, 65);
+			this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(116, 48);
+			this->button4->Size = System::Drawing::Size(155, 59);
 			this->button4->TabIndex = 0;
 			this->button4->Text = L"button1";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(122, 54);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button3->Location = System::Drawing::Point(164, 65);
+			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(116, 48);
+			this->button3->Size = System::Drawing::Size(155, 59);
 			this->button3->TabIndex = 0;
 			this->button3->Text = L"button1";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->panel1->ForeColor = System::Drawing::SystemColors::InfoText;
+			this->panel1->Location = System::Drawing::Point(325, 66);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(200, 100);
+			this->panel1->TabIndex = 1;
+			this->panel1->Visible = false;
+			// 
+			// contextMenuStrip1
+			// 
+			this->contextMenuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
+			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(7) {
+				this->toolStripTextBox1,
+					this->toolStripSeparator1, this->toolStripMenuItem1, this->toolStripMenuItem2, this->toolStripMenuItem3, this->toolStripMenuItem4,
+					this->toolStripMenuItem5
+			});
+			this->contextMenuStrip1->Name = L"contextMenuStrip1";
+			this->contextMenuStrip1->Size = System::Drawing::Size(212, 159);
+			// 
+			// toolStripTextBox1
+			// 
+			this->toolStripTextBox1->Enabled = false;
+			this->toolStripTextBox1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
+			this->toolStripTextBox1->Name = L"toolStripTextBox1";
+			this->toolStripTextBox1->ReadOnly = true;
+			this->toolStripTextBox1->Size = System::Drawing::Size(100, 27);
+			this->toolStripTextBox1->Text = L"Select correct word:";
+			// 
+			// toolStripSeparator1
+			// 
+			this->toolStripSeparator1->Name = L"toolStripSeparator1";
+			this->toolStripSeparator1->Size = System::Drawing::Size(208, 6);
+			// 
+			// toolStripMenuItem1
+			// 
+			this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
+			this->toolStripMenuItem1->Size = System::Drawing::Size(211, 24);
+			this->toolStripMenuItem1->Text = L"toolStripMenuItem1";
+			this->toolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainForm::toolStripMenuItem1_Click);
+			// 
+			// toolStripMenuItem2
+			// 
+			this->toolStripMenuItem2->Name = L"toolStripMenuItem2";
+			this->toolStripMenuItem2->Size = System::Drawing::Size(211, 24);
+			this->toolStripMenuItem2->Text = L"toolStripMenuItem2";
+			this->toolStripMenuItem2->Click += gcnew System::EventHandler(this, &MainForm::toolStripMenuItem2_Click);
+			// 
+			// toolStripMenuItem3
+			// 
+			this->toolStripMenuItem3->Name = L"toolStripMenuItem3";
+			this->toolStripMenuItem3->Size = System::Drawing::Size(211, 24);
+			this->toolStripMenuItem3->Text = L"toolStripMenuItem3";
+			this->toolStripMenuItem3->Click += gcnew System::EventHandler(this, &MainForm::toolStripMenuItem3_Click);
+			// 
+			// toolStripMenuItem4
+			// 
+			this->toolStripMenuItem4->Name = L"toolStripMenuItem4";
+			this->toolStripMenuItem4->Size = System::Drawing::Size(211, 24);
+			this->toolStripMenuItem4->Text = L"toolStripMenuItem4";
+			this->toolStripMenuItem4->Click += gcnew System::EventHandler(this, &MainForm::toolStripMenuItem4_Click);
+			// 
+			// toolStripMenuItem5
+			// 
+			this->toolStripMenuItem5->Name = L"toolStripMenuItem5";
+			this->toolStripMenuItem5->Size = System::Drawing::Size(211, 24);
+			this->toolStripMenuItem5->Text = L"toolStripMenuItem5";
+			this->toolStripMenuItem5->Click += gcnew System::EventHandler(this, &MainForm::toolStripMenuItem5_Click);
+			// 
+			// contextMenuStrip2
+			// 
+			this->contextMenuStrip2->ImageScalingSize = System::Drawing::Size(20, 20);
+			this->contextMenuStrip2->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->toolStripTextBox2 });
+			this->contextMenuStrip2->Name = L"contextMenuStrip2";
+			this->contextMenuStrip2->Size = System::Drawing::Size(231, 33);
+			// 
+			// toolStripTextBox2
+			// 
+			this->toolStripTextBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9));
+			this->toolStripTextBox2->Name = L"toolStripTextBox2";
+			this->toolStripTextBox2->ReadOnly = true;
+			this->toolStripTextBox2->ShortcutsEnabled = false;
+			this->toolStripTextBox2->Size = System::Drawing::Size(170, 27);
+			this->toolStripTextBox2->Text = L"There is no suggestion";
+			this->toolStripTextBox2->TextBoxTextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(458, 252);
+			this->ClientSize = System::Drawing::Size(611, 310);
 			this->Controls->Add(this->tableLayoutPanel2);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
@@ -239,6 +374,10 @@ namespace DsProject {
 			this->tableLayoutPanel1->PerformLayout();
 			this->tableLayoutPanel2->ResumeLayout(false);
 			this->flowLayoutPanel1->ResumeLayout(false);
+			this->contextMenuStrip1->ResumeLayout(false);
+			this->contextMenuStrip1->PerformLayout();
+			this->contextMenuStrip2->ResumeLayout(false);
+			this->contextMenuStrip2->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -280,13 +419,109 @@ private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::E
 				button3->BackColor = Color::Red;
 				button4->BackColor = Color::Red;
 				button5->BackColor = Color::Red;
-
+				//this->richTextBox1->Text->Substring(this->richTextBox1->Text->LastIndexOf(" "), this->richTextBox1->Text->Length - 1);
 			}
 		}
 
 	}
+
+	//cout << richTextBox1->Text->LastIndexOf(" ") << endl;
+
+	if (richTextBox1->Text->LastIndexOf(" ") == richTextBox1->TextLength-1) {
+		int startingInd = this->richTextBox1->Text->Substring(0, richTextBox1->TextLength - 1)->LastIndexOf(" ") + 1;
+		int endingInd = this->richTextBox1->Text->Substring(0, richTextBox1->TextLength - 1)->Length;
+		String^ cString = this->richTextBox1->Text->Substring(startingInd, endingInd-startingInd)->ToString();
+		string cnString = msclr::interop::marshal_as<std::string>(cString);
+		if (!wordExists(cnString, MainTrie)) {
+
+			this->richTextBox1->SelectionStart = startingInd;
+			richTextBox1->SelectionLength = endingInd - startingInd;
+
+			richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Strikeout, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(178)));
+			this->richTextBox1->SelectionColor = System::Drawing::Color::Red;
+
+			richTextBox1->DeselectAll();
+
+			richTextBox1->Select(richTextBox1->TextLength, 0);
+
+		}
+	}
+
 }
 private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+	   void OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
+private: System::Void toolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	//string fixingStr = msclr::interop::marshal_as<std::string>(this->richTextBox1->SelectedText);
+
+	//char* char_array = new char[fixingStr.length() + 1];
+	//char_array[fixingStr.length()] = '\0';
+	//for (int j = 0; j < fixingStr.length(); j++) {
+	//	char_array[j] = fixingStr[j];
+	//}
+	//this->contextMenuStrip1->Items[i + 2]->Text = gcnew String(char_array);
+	//Console::WriteLine(toolStripMenuItem1->Text);
+
+	//this->richTextBox1->Text = this->richTextBox1->Text->Replace("b", "Moz");
+	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem1->Text);
+
+	//this->richTextBox1->GetCharIndexFromPosition(this->richTextBox1->SelectedText->Replace())
+
+	//cout << msclr::interop::marshal_as<std::string>(this->richTextBox1->SelectedText) << endl;
+}
+private: System::Void toolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	//this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+	//	static_cast<System::Byte>(178)));
+	//this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem2->Text);
+
+	richTextBox1->DeselectAll();
+
+	richTextBox1->Select(richTextBox1->TextLength, 0);
+
+	cout << richTextBox1->SelectionStart << endl;
+
+}
+private: System::Void toolStripMenuItem3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem3->Text);
+	//this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+	//	static_cast<System::Byte>(178)));
+	//this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+}
+private: System::Void toolStripMenuItem4_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem4->Text);
+	this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		static_cast<System::Byte>(178)));
+	this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+}
+private: System::Void toolStripMenuItem5_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	this->richTextBox1->SelectedText = this->richTextBox1->SelectedText->Replace(this->richTextBox1->SelectedText, this->toolStripMenuItem5->Text);
+	this->richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		static_cast<System::Byte>(178)));
+	this->richTextBox1->SelectionColor = System::Drawing::Color::Black;
+
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+	//richTextBox1->SelectionColor = Color::Red;
+	//richTextBox1->SelectionBackColor = Color::IndianRed;
+	//richTextBox1->SelectionFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+	//	static_cast<System::Byte>(178)));
+
+
+	//richTextBox1->
+	//	this->richTextBox1->
+
 }
 };
 }
@@ -320,3 +555,78 @@ private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Win
 //
 //	//this->label1->Text = this->textBox1->Text;
 //}
+
+
+void DsProject::MainForm::OnMouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
+{
+	//this->panel1->Location.X = e->Location.X;
+	//this->panel1->Location.Y = e->Location.Y;	
+	//this->panel1->Visible = true;
+	//this->panel1->Show();
+
+	String^ cT = this->richTextBox1->SelectedText->ToString();
+	string checkingString = msclr::interop::marshal_as<std::string>(cT);
+
+	vector<string> correctWords;
+
+	//cout << checkingString.substr(0, checkingString.length() - 1) << endl;
+
+	if (checkingString == "") {
+
+		this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
+
+	}
+	else {
+
+		if (checkingString[checkingString.length() - 1] == ' ')
+			checkingString = checkingString.substr(0, checkingString.length() - 1);
+
+		correctWords = autoCorrect(MainTrie, ReverseTrie, checkingString);
+
+		if (wordExists(checkingString, MainTrie)) 
+
+			this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
+		
+		else {
+			for (int i = 0; i < 5; i++) {
+				char* char_array = new char[correctWords[i].length() + 1];
+				char_array[correctWords[i].length()] = '\0';
+				for (int j = 0; j < correctWords[i].length(); j++) {
+					char_array[j] = correctWords[i][j];
+				}
+				this->contextMenuStrip1->Items[i + 2]->Text = gcnew String(char_array);
+				delete[] char_array;
+
+			}
+
+			this->contextMenuStrip1->Show(Cursor->Position.X, Cursor->Position.Y);
+		}
+	}
+	
+	//if (correctWords.empty() || wordExists(checkingString, MainTrie))
+	//	this->contextMenuStrip2->Show(Cursor->Position.X, Cursor->Position.Y);
+	//else {
+
+	//	for (int i = 0; i < 5; i++) {
+	//		char* char_array = new char[correctWords[i].length() + 1];
+	//		char_array[correctWords[i].length()] = '\0';
+	//		for (int j = 0; j < correctWords[i].length(); j++) {
+	//			char_array[j] = correctWords[i][j];
+	//		}
+	//		this->contextMenuStrip1->Items[i+2]->Text = gcnew String(char_array);
+	//		delete[] char_array;
+	//	}
+	//	//char char_array[] = new char[correctWords[0].length() + 1];
+	//	//char_array[correctWords[0].length()] = '\0';
+	//	//for (int i = 0; i < correctWords[0].length(); i++) {
+	//	//	char_array[i] = correctWords[0][i];
+	//	//}
+	//	//contextMenuStrip1->Items[2]->Text = gcnew String(char_array);
+
+
+	//}
+
+	//this->contextMenuStrip1->Location.X = e->Location.X;
+	//this->contextMenuStrip1->Location.Y = e->Location.Y;
+	//this->contextMenuStrip1->Visible = true;
+}

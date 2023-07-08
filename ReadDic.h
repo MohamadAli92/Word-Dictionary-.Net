@@ -1,3 +1,6 @@
+#ifndef READDIC_H
+#define READDIC_H
+
 #include<array>
 #include<iostream>
 #include<fstream>
@@ -7,3 +10,7 @@
 using namespace std;
 
 int readDic(Trie* trie);
+
+#endif // !READDIC_H
+
+
